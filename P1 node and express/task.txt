@@ -1,0 +1,23 @@
+ REST API - JSON
+
+ GET /user - HTML document render 
+ GET /api/user - list all user JSON done 
+
+
+ GET /api/user/1 -  get the user with id 1   
+ GET /api/user/2 -  get the user with id 2
+
+// Daynamic Path and parameters 
+ GET /api/user/:id -
+ :id -> variable | Daynamic
+
+
+
+ POST  /api/user - create a new user
+
+ PATCH /user/1 = Update the user with id 1 
+
+
+
+
+ 
