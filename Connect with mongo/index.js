@@ -29,7 +29,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/my-app')
        unique:true
      }
 
-  })
+  },{ timestamps:true})
 
 //model
 
@@ -54,19 +54,30 @@ app.use((req,res,next) =>{
 })
 
 // ROUTES
-// app.get("/users", (req, res) => {
-//      res.json(users)
-// });
+
+app.get("/users",async (req,res) => {
+  const allDbuser = await User.find({})
+    const html = `
+         <ol>
+               ${allDbuser.map( user => `<li> ${user.first_name} - ${user.email} </li>`).join("")}
+         </ol>
+    `
+    res.send(html)
+})
+
+app.get("/api/users", async (req, res) => {
+  const allDbuser = await User.find({})
+     res.json(allDbuser)
+});
 
 app.route("/api/users/:id")
   
 //GET
-  .get((req,res) => {
+  .get(async (req,res) => {
      console.log(req.myname," you are in the router");
-      const id = Number(req.params.id)
-      const user = users.find(user => user.id == id)
+      const user = await User.findById(req.params.id)
       return res.json(user)
-   })
+   })  
 
 
   //POST
@@ -85,8 +96,21 @@ app.route("/api/users/:id")
    
     console.log(created);
     return res.status(201).json({msg:"User created succesed"})
-    
   })
+
+  // Update
+  .patch(async(req,res) =>{
+       await User.findByIdAndUpdate(req.params.id,{last_name:"bodarr"})
+      res.json({msg : "User Updated successfully"});
+      
+  }) 
+
+  // Delete
+  .delete(async(req,res) => {
+    await User.findByIdAndDelete(req.params.id)
+    res.json({msg : "User deleted successfull"})
+})
+
 
 
 app.listen(port, () => console.log(`SERVER STARTED! \n http://localhost:6060`));
