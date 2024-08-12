@@ -8,7 +8,6 @@ const {handlegetAlluser,
 
 
 // Routes
-
 router.route("/")
       .get(handlegetAlluser)
       .post(handleCreateNewUser);
