@@ -10,31 +10,38 @@ const port = 6060;
 //     return res.json(user)
 //  })
 
-// add plugins for post methode
-
+// add plugins for post methode  // this is type of inbuilt middeleware 
 app.use(express.urlencoded({ extended: false }));
 
-app.use((req,res,next) =>{
-  console.log("middleware 1 is calling");
+let middeleware = ((req,res,next) =>{
+  console.log("User middleware is calling");
   req.myname = "prince"
   next();
 })
 
-app.use((req,res,next) =>{
-  console.log("\n Hello",req.myname)
-  fs.appendFile("./log.txt",`${Date.now()} : ${req.method} : ${req.path} \n `,(err,data) =>{
-    next();
-  })
+// app.use((req,res,next) =>{
+//   console.log("middleware 1 is calling");
+//   req.myname = "prince"
+//   next();
+// })
 
-})
+// app.use((req,res,next) =>{
+//   console.log("\n Hello",req.myname)
+//   fs.appendFile("./log.txt",`${Date.now()} : ${req.method} : ${req.path} \n `,(err,data) =>{
+//     next();
+//   })
+
+// })
 
 // ROUTES
-app.get("/users", (req, res) => {
+app.get("/users",middeleware, (req, res) => {
   res.json(users);
   res.end();
 });
-app
-  .route("/api/users/:id")
+
+
+
+app .route("/api/users/:id")
   .get((req,res) => {
      console.log(req.myname,"you are in the router");
       const id = Number(req.params.id)
