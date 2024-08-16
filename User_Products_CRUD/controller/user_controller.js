@@ -19,7 +19,7 @@ exports.addUser = async (req, res) => {
 exports.getalluser = async (req, res) => {
   try {
     const users = await User.find();
-    return res.status(201).send(users);
+    return res.status(200).send(users);
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Internal Server Error" });

@@ -16,9 +16,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(morgan("dev"));
 
 
-app.get("/",async(req,res) => {
-    res.json("Server is Started !");
-})
+
+
 
 
 app.use("/api/user",router);
