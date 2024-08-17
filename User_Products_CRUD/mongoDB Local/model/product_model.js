@@ -13,7 +13,11 @@ const productSchema = mongoose.Schema({
         type:Number,
         reqiured:true
     },
-    discount:Number
+    discount:Number,
+    active:{
+        type:Boolean,
+        default:false
+    }
 })
 
 module.exports = mongoose.model('products',productSchema) 
