@@ -11,8 +11,13 @@ const mongoose = require("mongoose");
     },
     email:{ 
         type :String,
-        reqired:true
+        reqired:true,
+        unique:true
     },
+    active:{
+        type:Boolean,
+        default:false
+    }
  });
 
 module.exports = mongoose.model("users",userschema);

@@ -6,7 +6,7 @@ const port = 6666;
 const router = require("./routes/user_route")
 
 // Database Connections
- mongoose.connect(url)
+ mongoose.connect('mongodb://127.0.0.1:27017/node8to10')
        .then(() => console.log("MongoDB is  connected"))
        .catch((err) => console.log(err));
 
