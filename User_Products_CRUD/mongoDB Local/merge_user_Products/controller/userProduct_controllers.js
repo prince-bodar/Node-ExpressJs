@@ -92,7 +92,7 @@ exports.addProduct = async(req,res) => {
         })
         // console.log(product);
         
-        if(product) return res.status(404).json({msg:"Product alredy exist"});
+        if(product) return res.status(400).json({msg:"Product alredy exist"});
         product = await Product.create({...req.body})
         // console.log(product);
         res.status(201).json({msg:"Product is Added sucessfully ..."})

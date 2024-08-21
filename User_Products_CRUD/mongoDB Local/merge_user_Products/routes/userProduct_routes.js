@@ -2,7 +2,7 @@ const express = require("express");
 const user_Product_router = express.Router()
 const productRouter = express.Router();
 
-/**************************Product Routes***********************/
+   /**************************Product Routes***********************/
 const {
      addProduct,
      getAllProduct, 
