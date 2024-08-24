@@ -98,6 +98,8 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ msg: "Internal Server error" });
     }
 }
+
+
 exports.changePassword = async (req, res) => {
     try {
         const { currentpassword, newpassword, confirmpassword } = req.body;
@@ -122,3 +124,29 @@ exports.changePassword = async (req, res) => {
         res.status(500).json({ message: 'internal server error...' });
     }
 };
+
+
+// exports.changePassword= async(req,res) => {
+//     try {
+//         const {currentpassword , newpassword , confirmpassword } = req.body
+//         let user = req.user;
+//         if(!currentpassword || !newpassword || !confirmpassword){
+//             return res.json({msg:"Please Full filed the Password"});
+//         }
+//         if (newpassword !== confirmpassword){
+//                 return res.json({msg: "Confirm Password Is Not Match"})
+//             }
+//         let matchPassword = await bcrypt.compare(currentpassword, user.password);        
+//         if(!matchPassword) return res.status(400).json({msg:"currunt Password was wrong"});
+//         let hashpasssword = await bcrypt.hash(newpassword,10);
+//         user = await User.findByIdAndUpdate(
+//             user._id,
+//             {$set: {password:hashpasssword}},
+//             {new:true}
+//         )
+//         res.json({msg:"password changed successfully...."})
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: 'internal server error...' });
+//     }
+// }
