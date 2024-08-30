@@ -11,8 +11,22 @@ exports.registration = async(req,res)=>{
         }
         let haspass = await bcrypt.hash(req.body.password,10)
         user = await User.create({...req.body,password:haspass});
-        res.status(201).redirect("todo-list")
+        res.status(201).redirect("todolist")
     } catch (error) {
+        console.log(error);
+        res.status(500).json({msg: "Internal Server error"});
+    }
+}
+
+exports.todolist = async(req,res) => {
+    try {
+        let users = await User.find({})
+        if (users.length > 0) {
+            return res.render('todolist', { users });  // Pass the users array to the EJS template
+        } else {
+            res.status(400).send("No users found");
+        }
+    }catch (error) {
         console.log(error);
         res.status(500).json({msg: "Internal Server error"});
     }

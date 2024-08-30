@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
     <h1>todo list</h1>
@@ -18,12 +18,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>prince</td>
-                    <td>bodar</td>
-                    <td>bodarprins4gmail.com</td>
-                    <td>1234567890</td>
-                </tr>
+                <% users.forEach(function(user) { %>
+                    <tr>
+                         <td><%= user.firstName %></td>  
+                         <td><%= user.lastName %></td>  
+                         <td><%= user.email %></td>  
+                         <td><%= user.mobileNo %></td>  
+                    </tr>
+                    <% }); %>
             </tbody>
         </table>
     </div>
